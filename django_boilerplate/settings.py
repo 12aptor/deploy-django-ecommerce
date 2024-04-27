@@ -1,7 +1,6 @@
 from pathlib import Path
 from cloudinary import config
 from dotenv import load_dotenv
-from os import environ
 import os
 
 load_dotenv()
@@ -82,11 +81,11 @@ WSGI_APPLICATION = 'django_boilerplate.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': environ.get('DB_NAME'),
-        'USER': environ.get('DB_USER'),
-        'PASSWORD': environ.get('DB_PASSWORD'),
-        'HOST': environ.get('DB_HOST'),
-        'PORT': environ.get('DB_PORT'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 
@@ -127,6 +126,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -134,9 +135,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 config(
-    cloud_name= environ.get('CLOUDINARY_CLOUD_NAME'),
-    api_key= environ.get('CLOUDINARY_API_KEY'),
-    api_secret= environ.get('CLOUDINARY_API_SECRET')
+    cloud_name= os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    api_key= os.environ.get('CLOUDINARY_API_KEY'),
+    api_secret= os.environ.get('CLOUDINARY_API_SECRET')
 )
 
 AUTH_USER_MODEL = 'ecommerce.MyUser'
